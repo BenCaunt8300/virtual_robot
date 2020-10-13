@@ -29,8 +29,8 @@ public class MecanumFieldRelativeOpMode extends OpMode {
         } else {
             robot.nav.driveFieldRelative(strafe, forward, 0.0);
         }
-        telemetry.addData("x", robot.nav.getEstimatedPosition().getX(DistanceUnit.INCH));
-        telemetry.addData("y", robot.nav.getEstimatedPosition().getY(DistanceUnit.INCH));
+        telemetry.addData("x", String.format("%.2f", robot.nav.getEstimatedPosition().getX(DistanceUnit.INCH)));
+        telemetry.addData("y", String.format("%.2f", robot.nav.getEstimatedPosition().getY(DistanceUnit.INCH)));
 
     }
 }

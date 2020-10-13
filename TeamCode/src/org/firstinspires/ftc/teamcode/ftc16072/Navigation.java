@@ -70,7 +70,9 @@ public class Navigation {
     public RobotPosition getEstimatedPosition() {
         double[] distanceDriven = mecanumDrive.getDistanceCm();
 
-        Polar translation = Polar.fromCartesian(distanceDriven[0], -distanceDriven[1]);
+
+
+        Polar translation = Polar.fromCartesian(distanceDriven[0], distanceDriven[1]);
         double rotate = getHeading(AngleUnit.RADIANS);
         translation.subtractAngle(-rotate);
 

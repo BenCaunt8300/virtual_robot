@@ -16,9 +16,9 @@ class MecanumDrive implements QQ_Mechanism {
     private DcMotor backRight;
     private DcMotor backLeft;
 
-    private final static double GEAR_RATIO = 0.5;
+    private final static double GEAR_RATIO = 1.0; // for simulator ours should be 0.5
     private final static double WHEEL_RADIUS = 5.0; //5 cm
-    private final static double TICKS_PER_ROTATION = 383.6;
+    private final static double TICKS_PER_ROTATION = 1120.0; //1120.0 for simulator gobilda should be 383.6
     //cm per rotation/ticks per rotation
     private final static double CM_PER_TICK = (2 * Math.PI * GEAR_RATIO * WHEEL_RADIUS) / TICKS_PER_ROTATION;
 
@@ -116,7 +116,7 @@ class MecanumDrive implements QQ_Mechanism {
         encoderMatrix.put(2, 0, (float) ((backLeft.getCurrentPosition() - backLeftOffset) * CM_PER_TICK));
 
         MatrixF distanceMatrix = conversion.multiplied(encoderMatrix);
-        distance[0] = distanceMatrix.get(0, 0);
+        distance[1] = distanceMatrix.get(0, 0);
         distance[0] = distanceMatrix.get(1, 0);
 
         return distance;
