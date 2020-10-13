@@ -59,14 +59,14 @@ public class Navigation {
     }
 
 
-    public void setMecanumDriveMaxSpeed(double speed) {
+    /*public void setMecanumDriveMaxSpeed(double speed) {
         mecanumDrive.setMaxSpeed(speed);
     }
 
     public double getMecanumDriveMaxSpeed() {
         return mecanumDrive.getMaxSpeed();
     }
-
+    */
     public RobotPosition getEstimatedPosition() {
         double[] distanceDriven = mecanumDrive.getDistanceCm();
 
@@ -82,7 +82,7 @@ public class Navigation {
 
     public void setPosition(double x, double y, DistanceUnit distanceUnit) {
         lastSetPosition = new RobotPosition(x, y, distanceUnit, getHeading(AngleUnit.RADIANS), AngleUnit.RADIANS);
-        mecanumDrive.setEncoderOffsets();
+        //mecanumDrive.setEncoderOffsets();
     }
 
     public boolean rotateTo(double angle, AngleUnit angleUnit) {
