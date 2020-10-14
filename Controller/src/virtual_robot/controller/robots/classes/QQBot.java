@@ -1,6 +1,8 @@
 package virtual_robot.controller.robots.classes;
 
+import com.qualcomm.robotcore.hardware.DcMotorExImpl;
 import com.qualcomm.robotcore.hardware.ServoImpl;
+import com.qualcomm.robotcore.hardware.configuration.MotorType;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -26,6 +28,8 @@ public class QQBot extends TurretBot {
     // Wobbly goal mechanism
     private ServoImpl grabberServo;
     private ServoImpl rotatorServo;
+    // intake mechanism
+    private DcMotorExImpl intakeMotor;
 
     /**
      * Constructor.
@@ -39,9 +43,12 @@ public class QQBot extends TurretBot {
         //Temporarily activate the hardware map to allow calls to "get"
         hardwareMap.setActive(true);
 
-        //Instantiate the turret servos. Note the cast to ServoImpl.
+        //Instantiate the wobbly goal servos. Note the cast to ServoImpl.
         grabberServo = (ServoImpl) hardwareMap.servo.get("grabber");
         rotatorServo = (ServoImpl) hardwareMap.servo.get("rotator");
+
+        //Instantiate the motor
+        intakeMotor = (DcMotorExImpl) hardwareMap.dcMotor.get("intake_motor");
 
         //Deactivate the hardwaremap to prevent users from accessing hardware until after INIT is pressed
         hardwareMap.setActive(false);
@@ -64,6 +71,8 @@ public class QQBot extends TurretBot {
 
         hardwareMap.put("grabber", new ServoImpl());
         hardwareMap.put("rotator", new ServoImpl());
+
+        hardwareMap.put("intake_motor", new DcMotorExImpl(MotorType.Neverest40));
     }
 
     /**
