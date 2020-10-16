@@ -1,6 +1,8 @@
 package virtual_robot.controller.robots.classes;
 
+import com.qualcomm.hardware.bosch.BNO055IMUImpl;
 import com.qualcomm.robotcore.hardware.DcMotorExImpl;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.ServoImpl;
 import com.qualcomm.robotcore.hardware.configuration.MotorType;
 
@@ -52,6 +54,8 @@ public class QQBot extends TurretBot {
 
         //Deactivate the hardwaremap to prevent users from accessing hardware until after INIT is pressed
         hardwareMap.setActive(false);
+
+        gearRatioWheel = 0.5;  // take into account 2:1 reduction from motor
     }
 
     /**
@@ -68,6 +72,11 @@ public class QQBot extends TurretBot {
      */
     protected void createHardwareMap() {
         super.createHardwareMap();
+
+        String[] motorNames = new String[]{"back_left_motor", "front_left_motor", "front_right_motor", "back_right_motor"};
+        for (String name : motorNames) hardwareMap.put(name, new DcMotorExImpl(MotorType.Gobilda137));
+
+        hardwareMap.put("color_sensor", controller.new ColorSensorImpl());
 
         hardwareMap.put("grabber", new ServoImpl());
         hardwareMap.put("rotator", new ServoImpl());
